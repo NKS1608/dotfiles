@@ -1,0 +1,19 @@
+alias music='ncmpcpp'
+alias l="exa -bls type --icons"
+alias ll="exa -balGs type --icons"
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# update
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
+
+# Configs
+alias bsc='lvim ~/.config/bspwm/bspwmrc'
+alias sxc='lvim ~/.config/sxhkd/sxhkdrc'
+alias poc='lvim ~/.config/polybar/config.ini'
+alias pic='lvim ~/.config/picom/picom.conf'
+alias roc='lvim ~/.config/rofi/config.rasi'
+alias zrc='lvim ~/.zshrc'
