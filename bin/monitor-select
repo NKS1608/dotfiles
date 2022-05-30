@@ -1,0 +1,32 @@
+#!/bin/env bash
+
+reload () {
+  touch /tmp/monitor-select-run
+  bspc wm -r
+  sleep 0.1
+  rm /tmp/monitor-select-run
+}
+
+case $1 in
+  1)
+    xrandr --output HDMI-A-0 --primary --mode 1920x1080 --rotate normal --output eDP --off;
+    bspc monitor HDMI-A-0 -d 1 2 3 4 5 6;
+    bspc monitor 
+    reload;
+    bspc monitor eDP -r;;
+  2)
+    xrandr --output HDMI-A-0 --primary --mode 1920x1080 --rotate normal --output eDP --mode 1366x768 --rotate normal --left-of HDMI-A-0;
+    bspc monitor HDMI-A-0 -d 1 2 3 4 5 6;
+    bspc monitor eDP -d 8 9 0;
+    reload;
+    bspc monitor HDMI-A-0 -s eDP;;
+  3)
+    bspc monitor eDP -d 1 2 3 4 5 6;
+    xrandr --output eDP --primary --mode 1366x768 --rotate normal --output HDMI-A-0 --off;
+    reload;
+    bspc monitor HDMI-A-0 -r;;
+  4)
+    bspc monitor -d 1 2 3 4 5 6
+esac
+
+echo $1 > ~/.monitor-selected

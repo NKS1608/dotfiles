@@ -1,0 +1,19 @@
+#!/bin/env bash
+
+sleep 0.1
+prev=$(cat ~/.monitor-selected)
+external_monitor=$(xrandr --query | grep 'HDMI-A-0')
+if [[ $external_monitor = *" connected "* ]]; then
+    ## 2 Monitors
+    #xrandr --output HDMI-A-0 --primary --mode 1920x1080 --rotate normal --output eDP --mode 1366x768 --rotate normal --left-of HDMI-A-0
+    #bspc monitor HDMI-A-0 -d 1 2 3 4 5 6 7
+    #bspc monitor eDP -d 8 9 0
+    #bspc monitor HDMI-A-0 -s eDP
+    ## Only External Monitor
+    #xrandr --output HDMI-A-0 --primary --mode 1920x1080 --rotate normal --output eDP --off
+    #bspc monitor HDMI-A-0 -d I II II IV V VI VII VIII IX X
+    monitor-select $prev
+else
+    #bspc monitor eDP -d 1 2 3 4 5 6
+    monitor-select 4
+fi
